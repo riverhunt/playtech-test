@@ -1,0 +1,19 @@
+{
+  "name": "Name",
+  "valid_email": "test@test.org",
+  "invalid_emails": [
+    ["test"],
+    ["test@"],
+    ["test@test"],
+    ["test@@test.org"],
+    ["&^%^%@&^*&^.&*&^"]
+  ],
+  "address": "address",
+  "valid_phone": "1234567",
+  "invalid_phones": [
+    ["!@#$%^^&"],
+    ["aaaaa"],
+    ["0"]
+  ],
+  "comment" : "comments"
+}
