@@ -3,6 +3,8 @@ package org.aut;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class TestData {
+    @JsonProperty("radio_option_comment")
+    public String radioComment;
     @JsonProperty("name")
     public String name;
     @JsonProperty("valid_email")

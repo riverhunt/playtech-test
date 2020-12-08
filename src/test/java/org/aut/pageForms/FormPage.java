@@ -17,7 +17,6 @@ public class FormPage {
         this.driver = driver;
     }
 
-
     @FindBy(xpath = "//div[contains(@class,'QuestionRadioChoicesContainer')]")
     private WebElement radioChoicesContainer;
 
@@ -93,5 +92,10 @@ public class FormPage {
         } catch (NoSuchElementException e) {
             return false;
         }
+    }
+
+    public boolean isOptionSelected() {
+        List<WebElement> selected = radioChoicesContainer.findElements(By.xpath(".//label[contains(@class,'isChecked')]"));
+        return selected != null && selected.size() > 0;
     }
 }

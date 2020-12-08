@@ -112,7 +112,7 @@ public class ContactFormTests {
 
     @Test(dataProvider = "getPhoneNumbers")
     public void phoneNumberIsWrong_shouldShowValidationError(String phone) {
-        formPage.selectOption(3);
+        formPage.selectOption(5);
         formPage.inputName(testData.name);
         formPage.inputEmail(testData.validEmail);
         formPage.inputAddress(testData.address);
@@ -121,6 +121,15 @@ public class ContactFormTests {
         formPage.clickSubmitButton();
 
         Assert.assertTrue(formPage.errorAlertPresent(), "No Validation Error for phone number: " + phone);
+    }
+
+    @Test
+    public void clearSelectionButtonTest_optionSelectionShouldBeCleared() {
+        formPage.selectOption(6);
+        formPage.inputRadioChoiceComment(testData.radioComment);
+        Assert.assertTrue(formPage.isOptionSelected(), "No option selected.");
+        formPage.clearRadioChoice();
+        Assert.assertFalse(formPage.isOptionSelected(), "Option still selected.");
     }
 
     @Test

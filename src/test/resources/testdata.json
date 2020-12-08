@@ -1,4 +1,5 @@
 {
+  "radio_option_comment": "aaaaaa",
   "name": "Name",
   "valid_email": "test@test.org",
   "invalid_emails": [
