@@ -19,7 +19,7 @@ public class ContactFormTests {
     private WebDriver driver;
     private static FormPage formPage;
     private static FormSubmittedPage formSubmittedPage;
-    private static TestData testData = loadTestData();
+    private static TestData testData = loadTestData("testdata.json");
     private static final String url = ConfProperties.getProperty("url");
 
     @BeforeClass

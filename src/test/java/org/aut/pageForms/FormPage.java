@@ -17,22 +17,29 @@ public class FormPage {
         this.driver = driver;
     }
 
-    @FindBy(xpath = "//*[@id=\"mG61Hd\"]/div[2]/div/div[2]/div[1]/div/div/div[2]/div[1]/div/span/div")
-    private WebElement radioButtonsContainer;
 
-    @FindBy(xpath = "//*[@id=\"mG61Hd\"]/div[2]/div/div[2]/div[2]/div/div/div[2]/div/div[1]/div/div[1]/input")
+    @FindBy(xpath = "//div[contains(@class,'QuestionRadioChoicesContainer')]")
+    private WebElement radioChoicesContainer;
+
+    @FindBy(xpath = "(//input[@type='text'])[1]")
+    private WebElement radioChoiceComment;
+
+    @FindBy(xpath = "(//div[contains(@class,'QuestionRadioFooter')])")
+    private WebElement radioChoiceFooter;
+
+    @FindBy(xpath = "(//input[@type='text'])[2]")
     private WebElement nameField;
 
-    @FindBy(xpath = "//*[@id=\"mG61Hd\"]/div[2]/div/div[2]/div[3]/div/div/div[2]/div/div[1]/div/div[1]/input")
+    @FindBy(xpath = "//input[@type='email']")
     private WebElement emailField;
 
-    @FindBy(xpath = "//*[@id=\"mG61Hd\"]/div[2]/div/div[2]/div[4]/div/div/div[2]/div/div[1]/div[2]/textarea")
+    @FindBy(xpath = "(//textarea[contains(@class,'textareaInput')])[1]")
     private WebElement addressField;
 
-    @FindBy(xpath = "//*[@id=\"mG61Hd\"]/div[2]/div/div[2]/div[5]/div/div/div[2]/div/div[1]/div/div[1]/input")
+    @FindBy(xpath = "(//input[@type='text'])[3]")
     private WebElement phoneField;
 
-    @FindBy(xpath = "//*[@id=\"mG61Hd\"]/div[2]/div/div[2]/div[6]/div/div/div[2]/div/div[1]/div[2]/textarea")
+    @FindBy(xpath = "(//textarea[contains(@class,'textareaInput')])[2]")
     private WebElement commentsField;
 
     @FindBy(xpath = "//div[(@role='button') and (contains(@class,'SubmitButton'))]")
@@ -41,6 +48,13 @@ public class FormPage {
     @FindBy(xpath = "//div[(@role='alert') and (contains(@class,'ValidationError'))]")
     private WebElement errorAlert;
 
+    public void inputRadioChoiceComment(String name) {
+        radioChoiceComment.sendKeys(name);
+    }
+
+    public void clearRadioChoice() {
+        radioChoiceFooter.findElement(By.xpath(".//div[@role='button']")).click();
+    }
 
     public void inputName(String name) {
         nameField.sendKeys(name);
@@ -63,7 +77,7 @@ public class FormPage {
     }
 
     public void selectOption(int option) {
-        List<WebElement> options = radioButtonsContainer.findElements(By.xpath(".//div[@role='radio']"));
+        List<WebElement> options = radioChoicesContainer.findElements(By.xpath(".//div[@role='radio']"));
         if (options.size() >= option - 1)
             options.get(option - 1).click();
     }

@@ -30,9 +30,9 @@ public class CommonMethods {
         return new ChromeDriver(options);
     }
 
-    public static TestData loadTestData() {
+    public static TestData loadTestData(String file) {
         try (
-                InputStream inputStream = TestData.class.getClassLoader().getResourceAsStream("testdata.json")
+                InputStream inputStream = TestData.class.getClassLoader().getResourceAsStream(file)
         ) {
             return new ObjectMapper().readValue(inputStream, TestData.class);
         } catch (Exception e) {
