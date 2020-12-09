@@ -17,16 +17,11 @@ import java.util.concurrent.TimeUnit;
 import static org.aut.CommonMethods.*;
 
 public class ContactFormTests {
-    private WebDriver driver;
+    private static WebDriver driver;
     private static FormPage formPage;
     private static FormSubmittedPage formSubmittedPage;
     private static TestData testData = loadTestData("testdata.json");
     private static final String url = ConfProperties.getProperty("url");
-
-    @BeforeClass
-    public void checkTestData() {
-        Assert.assertNotNull(testData);
-    }
 
     @DataProvider
     public Object[][] getNames() {
@@ -46,6 +41,11 @@ public class ContactFormTests {
     @DataProvider
     public Object[][] getPhoneNumbers() {
         return testData.invalidPhones;
+    }
+
+    @BeforeClass
+    public void checkTestData() {
+        Assert.assertNotNull(testData);
     }
 
     @BeforeMethod

@@ -65,6 +65,32 @@ public class FormPage {
     @FindBy(xpath = "//div[(@role='alert') and (contains(@class,'ValidationError'))]")
     private WebElement errorAlert;
 
+
+    public WebElement getRadioChoiceTitle() {
+        return radioChoiceTitle;
+    }
+
+    public WebElement getNameTitle() {
+        return nameTitle;
+    }
+
+    public WebElement getEmailTitle() {
+        return emailTitle;
+    }
+
+    public WebElement getAddressTitle() {
+        return addressTitle;
+    }
+
+    public WebElement getPhoneTitle() {
+        return phoneTitle;
+    }
+
+    public WebElement getCommentTitle() {
+        return commentTitle;
+    }
+
+
     public void inputRadioChoiceComment(String name) {
         radioChoiceComment.sendKeys(name);
     }
@@ -123,29 +149,5 @@ public class FormPage {
 
     public boolean containsAsterisk(WebElement e) {
         return e.getText().contains("*");
-    }
-
-    public WebElement getRadioChoiceTitle() {
-        return radioChoiceTitle;
-    }
-
-    public WebElement getNameTitle() {
-        return nameTitle;
-    }
-
-    public WebElement getEmailTitle() {
-        return emailTitle;
-    }
-
-    public WebElement getAddressTitle() {
-        return addressTitle;
-    }
-
-    public WebElement getPhoneTitle() {
-        return phoneTitle;
-    }
-
-    public WebElement getCommentTitle() {
-        return commentTitle;
     }
 }
