@@ -1,11 +1,11 @@
 package org.aut.pageForms;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Reporter;
 
 import java.util.List;
 
@@ -96,44 +96,48 @@ public class FormPage {
     }
 
     public void clearRadioChoice() {
+        Reporter.log("Clearing selection <br/>");
         radioChoiceFooter.findElement(By.xpath(".//div[@role='button']")).click();
     }
 
     public void inputName(String name) {
+        Reporter.log("Inserting name <br/>");
         nameField.sendKeys(name);
     }
 
     public void inputEmail(String email) {
+        Reporter.log("Inserting email <br/>");
         emailField.sendKeys(email);
     }
 
     public void inputAddress(String address) {
+        Reporter.log("Inserting address <br/>");
         addressField.sendKeys(address);
     }
 
     public void inputPhone(String phone) {
+        Reporter.log("Inserting phone number <br/>");
         phoneField.sendKeys(phone);
     }
 
     public void inputComment(String comment) {
+        Reporter.log("Inserting comment <br/>");
         commentsField.sendKeys(comment);
     }
 
     public void selectOption(int option) {
+        Reporter.log("Selecting radio option <br/>");
         List<WebElement> options = radioChoicesContainer.findElements(By.xpath(".//div[@role='radio']"));
         if (options.size() >= option - 1)
             options.get(option - 1).click();
     }
 
     public void clickSubmitButton() {
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException ignore) {}
-
         submitButton.click();
     }
 
     public boolean errorAlertPresent() {
+        Reporter.log("Checking if error alert is present <br/>");
         try {
             this.errorAlert.getText();
             return true;
@@ -143,11 +147,17 @@ public class FormPage {
     }
 
     public boolean isOptionSelected() {
+        Reporter.log("Checking if any of the radio options are selected <br/>");
         List<WebElement> selected = radioChoicesContainer.findElements(By.xpath(".//label[contains(@class,'isChecked')]"));
         return selected != null && selected.size() > 0;
     }
 
     public boolean containsAsterisk(WebElement e) {
+        Reporter.log("Checking if element title contains asterisk <br/>");
         return e.getText().contains("*");
+    }
+
+    public void waitForPageToLoad() {
+        new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOf(nameField));
     }
 }

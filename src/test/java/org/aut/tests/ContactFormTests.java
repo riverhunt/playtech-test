@@ -56,15 +56,28 @@ public class ContactFormTests {
         formSubmittedPage = new FormSubmittedPage(driver);
 
         driver.get(url);
+        formPage.waitForPageToLoad();
     }
 
     @AfterMethod
-    public void cleanUp(ITestResult result) {
+    public void cleanUp(ITestResult result) throws InterruptedException {
         if (result.getStatus() == ITestResult.FAILURE) {
             Reporter.setCurrentTestResult(result);
             takeScreenshot(driver);
         }
         driver.quit();
+    }
+
+    @Test
+    public void nameIsEmpty_shouldShowValidationError() {
+        formPage.selectOption(1);
+        formPage.inputEmail(testData.email);
+        formPage.inputAddress(testData.address);
+        formPage.inputPhone(testData.phone);
+        formPage.inputComment(testData.comment);
+        formPage.clickSubmitButton();
+
+        Assert.assertTrue(formPage.errorAlertPresent());
     }
 
     @Test(dataProvider = "getNames")
@@ -93,11 +106,12 @@ public class ContactFormTests {
     public void emailIsWrong_shouldShowValidationError(String email) {
         formPage.selectOption(3);
         formPage.inputName(testData.name);
+        formPage.inputEmail(email);
         formPage.inputAddress(testData.address);
         formPage.inputPhone(testData.phone);
         formPage.inputComment(testData.comment);
-        formPage.inputEmail(email);
         formPage.clickSubmitButton();
+
         Assert.assertTrue(formPage.errorAlertPresent(), "No Validation Error for email: " + email);
     }
 
