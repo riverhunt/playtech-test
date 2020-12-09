@@ -1,15 +1,22 @@
 {
   "radio_option_comment": "aaaaaa",
-  "name": "Name",
+  "valid_name": "John Smith",
+  "invalid_names": [
+    [" "]
+  ],
   "valid_email": "test@test.org",
   "invalid_emails": [
+    [" "],
     ["test"],
     ["test@"],
     ["test@test"],
     ["test@@test.org"],
     ["&^%^%@&^*&^.&*&^"]
   ],
-  "address": "address_line1\naddress_line2\n123",
+  "valid_address": "address_line1\naddress_line2\n123",
+  "invalid_addresses": [
+    [" "]
+  ],
   "valid_phone": "1234567",
   "invalid_phones": [
     ["!@#$%^^&"],

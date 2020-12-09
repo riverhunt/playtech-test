@@ -17,6 +17,9 @@ public class FormPage {
         this.driver = driver;
     }
 
+    @FindBy(xpath = "(//div[contains(@class,'QuestionBaseTitleDescContainer')])[1]")
+    private WebElement radioChoiceTitle;
+
     @FindBy(xpath = "//div[contains(@class,'QuestionRadioChoicesContainer')]")
     private WebElement radioChoicesContainer;
 
@@ -26,17 +29,32 @@ public class FormPage {
     @FindBy(xpath = "(//div[contains(@class,'QuestionRadioFooter')])")
     private WebElement radioChoiceFooter;
 
+    @FindBy(xpath = "(//div[contains(@class,'QuestionBaseTitleDescContainer')])[2]")
+    private WebElement nameTitle;
+
     @FindBy(xpath = "(//input[@type='text'])[2]")
     private WebElement nameField;
+
+    @FindBy(xpath = "(//div[contains(@class,'QuestionBaseTitleDescContainer')])[3]")
+    private WebElement emailTitle;
 
     @FindBy(xpath = "//input[@type='email']")
     private WebElement emailField;
 
+    @FindBy(xpath = "(//div[contains(@class,'QuestionBaseTitleDescContainer')])[4]")
+    private WebElement addressTitle;
+
     @FindBy(xpath = "(//textarea[contains(@class,'textareaInput')])[1]")
     private WebElement addressField;
 
+    @FindBy(xpath = "(//div[contains(@class,'QuestionBaseTitleDescContainer')])[5]")
+    private WebElement phoneTitle;
+
     @FindBy(xpath = "(//input[@type='text'])[3]")
     private WebElement phoneField;
+
+    @FindBy(xpath = "(//div[contains(@class,'QuestionBaseTitleDescContainer')])[6]")
+    private WebElement commentTitle;
 
     @FindBy(xpath = "(//textarea[contains(@class,'textareaInput')])[2]")
     private WebElement commentsField;
@@ -82,6 +100,10 @@ public class FormPage {
     }
 
     public void clickSubmitButton() {
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException ignore) {}
+
         submitButton.click();
     }
 
@@ -97,5 +119,33 @@ public class FormPage {
     public boolean isOptionSelected() {
         List<WebElement> selected = radioChoicesContainer.findElements(By.xpath(".//label[contains(@class,'isChecked')]"));
         return selected != null && selected.size() > 0;
+    }
+
+    public boolean containsAsterisk(WebElement e) {
+        return e.getText().contains("*");
+    }
+
+    public WebElement getRadioChoiceTitle() {
+        return radioChoiceTitle;
+    }
+
+    public WebElement getNameTitle() {
+        return nameTitle;
+    }
+
+    public WebElement getEmailTitle() {
+        return emailTitle;
+    }
+
+    public WebElement getAddressTitle() {
+        return addressTitle;
+    }
+
+    public WebElement getPhoneTitle() {
+        return phoneTitle;
+    }
+
+    public WebElement getCommentTitle() {
+        return commentTitle;
     }
 }

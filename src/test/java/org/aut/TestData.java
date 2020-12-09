@@ -5,16 +5,20 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class TestData {
     @JsonProperty("radio_option_comment")
     public String radioComment;
-    @JsonProperty("name")
+    @JsonProperty("valid_name")
     public String name;
+    @JsonProperty("invalid_names")
+    public String[][] invalidNames;
     @JsonProperty("valid_email")
-    public String validEmail;
+    public String email;
     @JsonProperty("invalid_emails")
     public String[][] invalidEmails;
-    @JsonProperty("address")
+    @JsonProperty("valid_address")
     public String address;
+    @JsonProperty("invalid_addresses")
+    public String[][] invalidAddresses;
     @JsonProperty("valid_phone")
-    public String validPhone;
+    public String phone;
     @JsonProperty("invalid_phones")
     public String[][] invalidPhones;
     @JsonProperty("comment")
